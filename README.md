@@ -1,4 +1,4 @@
-# 🚀 Code Capital (Working Title)
+# 🚀 Code Capital
 
 **Code Capital** is a fully UI-driven software development simulation game built with Flutter.
 
