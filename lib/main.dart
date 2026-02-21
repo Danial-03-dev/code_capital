@@ -1,6 +1,8 @@
+import 'package:code_capital/core/cubits/app_cubit/app_cubit.dart';
 import 'package:code_capital/core/dependency_injection/service_locator.dart';
 import 'package:code_capital/features/company/blocs/company_bloc/company_bloc.dart';
-import 'package:code_capital/features/company/presentation/pages/company_page.dart';
+import 'package:code_capital/features/game/presentation/game_page.dart';
+import 'package:code_capital/features/onboarding/presentation/intro_page.dart';
 import 'package:code_capital/game_loop/cubits/game_loop_cubit/game_loop_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,12 +26,31 @@ class MyApp extends StatelessWidget {
         BlocProvider<GameLoopCubit>.value(
           value: serviceLocator<GameLoopCubit>(),
         ),
+        BlocProvider<AppCubit>(
+          create: (_) => serviceLocator<AppCubit>()..loadGame(),
+        ),
         BlocProvider<CompanyBloc>(create: (_) => serviceLocator<CompanyBloc>()),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         title: 'Code Capital',
         debugShowCheckedModeBanner: false,
-        home: CompanyPage(),
+        home: BlocBuilder<AppCubit, AppCubitState>(
+          builder: (context, state) {
+            if (state is AppLoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (state is AppNoCompanyState) {
+              return const IntroPage();
+            }
+
+            if (state is AppReadyState) {
+              return GamePage(company: state.company);
+            }
+
+            return const SizedBox();
+          },
+        ),
       ),
     );
   }

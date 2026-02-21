@@ -20,6 +20,8 @@ class CompanyBloc extends Bloc<CompanyBlocEvent, CompanyBlocState> {
       super(
         CompanyBlocState(
           company: Company(
+            id: '1',
+            name: 'yes',
             money: 1000,
             employees: [Employee(programmingSkill: 2)],
           ),
