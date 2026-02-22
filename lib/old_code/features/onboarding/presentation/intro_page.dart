@@ -19,7 +19,7 @@ class _IntroPageState extends State<IntroPage> {
 
       if (companyName.isEmpty) return;
 
-      context.read<AppCubit>().createCompany(companyName);
+      context.read<AppCubit>().createNewGame(companyName);
     }
 
     return Scaffold(

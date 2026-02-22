@@ -1,55 +1,31 @@
-import 'package:code_capital/core/storage/models/company_model/company_model.dart';
-import 'package:code_capital/core/storage/services/company_storage_service.dart';
-import 'package:code_capital/features/company/models/company.dart';
+import 'package:code_capital/core/storage/models/game_snapshot_model.dart';
+import 'package:code_capital/core/storage/storage_services/game_snapshot_storage_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'app_cubit_state.dart';
 
 class AppCubit extends Cubit<AppCubitState> {
-  final CompanyStorageService _storage;
-
-  AppCubit({required CompanyStorageService companyStorageService})
-    : _storage = companyStorageService,
+  final GameSnapshotStorageService _storage;
+  AppCubit({required GameSnapshotStorageService storage})
+    : _storage = storage,
       super(AppLoadingState());
 
-  void loadGame() {
-    final company = _storage.getCompany();
+  Future<void> load() async {
+    final snapshot = await _storage.load();
 
-    if (company == null) {
-      emit(AppNoCompanyState());
+    if (snapshot == null) {
+      emit(AppNoSaveState());
       return;
     }
 
-    emit(
-      AppReadyState(
-        company: Company(
-          id: company.id,
-          name: company.name,
-          money: company.money,
-          week: company.week,
-        ),
-      ),
-    );
+    emit(AppExistingSaveState(snapshot: snapshot));
   }
 
-  void createCompany(String name) async {
-    final startingMoney = 1000;
+  Future<void> startNewSave(String companyName) async {
+    final snapshot = GameSnapshotModel(companyName: companyName);
 
-    final company = Company(
-      id: DateTime.now().microsecondsSinceEpoch.toString(),
-      name: name,
-      money: startingMoney,
-    );
+    await _storage.save(snapshot: snapshot);
 
-    await _storage.saveCompany(
-      CompanyModel(
-        id: company.id,
-        name: company.name,
-        money: company.money,
-        week: company.week,
-      ),
-    );
-
-    emit(AppReadyState(company: company));
+    emit(AppExistingSaveState(snapshot: snapshot));
   }
 }

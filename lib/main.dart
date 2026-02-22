@@ -1,14 +1,15 @@
 import 'package:code_capital/core/cubits/app_cubit/app_cubit.dart';
-import 'package:code_capital/core/dependency_injection/service_locator.dart';
-import 'package:code_capital/features/company/blocs/company_bloc/company_bloc.dart';
-import 'package:code_capital/features/game/presentation/game_page.dart';
-import 'package:code_capital/features/onboarding/presentation/intro_page.dart';
-import 'package:code_capital/game_loop/cubits/game_loop_cubit/game_loop_cubit.dart';
+import 'package:code_capital/core/cubits/game_loop_cubit/game_loop_cubit.dart';
+import 'package:code_capital/core/cubits/theme_cubit/theme_cubit.dart';
+import 'package:code_capital/core/cubits/theme_cubit/theme_cubit_state.dart';
+import 'package:code_capital/core/dependencies_injection/service_locator.dart';
+import 'package:code_capital/core/widgets/game/my_game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await initDependencies();
 
   serviceLocator<GameLoopCubit>().start();
@@ -23,34 +24,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => ThemeCubit()),
         BlocProvider<GameLoopCubit>.value(
           value: serviceLocator<GameLoopCubit>(),
         ),
         BlocProvider<AppCubit>(
-          create: (_) => serviceLocator<AppCubit>()..loadGame(),
+          create: (_) => serviceLocator<AppCubit>()..load(),
         ),
-        BlocProvider<CompanyBloc>(create: (_) => serviceLocator<CompanyBloc>()),
       ],
-      child: MaterialApp(
-        title: 'Code Capital',
-        debugShowCheckedModeBanner: false,
-        home: BlocBuilder<AppCubit, AppCubitState>(
-          builder: (context, state) {
-            if (state is AppLoadingState) {
-              return const Center(child: CircularProgressIndicator());
-            }
+      child: BlocConsumer<ThemeCubit, ThemeCubitState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          final theme = state.themeData;
 
-            if (state is AppNoCompanyState) {
-              return const IntroPage();
-            }
-
-            if (state is AppReadyState) {
-              return GamePage(company: state.company);
-            }
-
-            return const SizedBox();
-          },
-        ),
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Code Capital',
+            theme: theme,
+            home: MyGame(),
+          );
+        },
       ),
     );
   }

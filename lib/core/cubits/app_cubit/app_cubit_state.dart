@@ -6,10 +6,10 @@ abstract class AppCubitState {
 
 class AppLoadingState extends AppCubitState {}
 
-class AppNoCompanyState extends AppCubitState {}
+class AppNoSaveState extends AppCubitState {}
 
-class AppReadyState extends AppCubitState {
-  final Company company;
+class AppExistingSaveState extends AppCubitState {
+  final GameSnapshotModel snapshot;
 
-  const AppReadyState({required this.company});
+  const AppExistingSaveState({required this.snapshot});
 }
