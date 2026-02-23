@@ -109,10 +109,9 @@ ThemeData appThemeProvider({
         backgroundColor: primary,
         foregroundColor: textPrimary,
         elevation: 2,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: primary, width: 2),
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        padding: EdgeInsets.all(0),
+        minimumSize: Size(0, 0),
       ),
     ),
 
