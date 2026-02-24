@@ -1,15 +1,12 @@
-import 'package:code_capital/core/widgets/animations/nav_bar/nav_rail/wigets/nav_rail_item.dart';
-import 'package:code_capital/core/widgets/configs/custom_scroll_config.dart';
-import 'package:flutter/material.dart';
+part of '../nav_rail.dart';
 
-class NavRailItemsList extends StatelessWidget {
+class _ItemsList extends StatelessWidget {
   final List<({String title, IconData icon})> items;
   final int duration;
   final double? iconSize;
   final bool isExpanded;
 
-  const NavRailItemsList({
-    super.key,
+  const _ItemsList({
     this.items = const [],
     this.duration = 200,
     this.iconSize,
@@ -27,7 +24,7 @@ class NavRailItemsList extends StatelessWidget {
             child: Column(
               spacing: 16,
               children: items.map((item) {
-                return NavRailItem(
+                return _Item(
                   isExpanded: isExpanded,
                   icon: item.icon,
                   pageTitle: item.title,

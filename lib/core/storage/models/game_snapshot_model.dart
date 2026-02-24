@@ -1,17 +1,23 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class GameSnapshotModel {
-  final String companyName;
+import 'package:code_capital/core/storage/models/company_storage_model.dart';
 
-  const GameSnapshotModel({required this.companyName});
+class GameSnapshotModel {
+  final CompanyStorageModel company;
+
+  const GameSnapshotModel({required this.company});
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{'companyName': companyName};
+    return <String, dynamic>{'company': company.toMap()};
   }
 
   factory GameSnapshotModel.fromMap(Map<String, dynamic> map) {
-    return GameSnapshotModel(companyName: map['companyName'] as String);
+    return GameSnapshotModel(
+      company: CompanyStorageModel.fromMap(
+        map['company'] as Map<String, dynamic>,
+      ),
+    );
   }
 
   String toJson() => json.encode(toMap());

@@ -1,6 +1,13 @@
-import 'package:code_capital/core/widgets/animations/nav_bar/nav_rail/wigets/nav_rail_header.dart';
-import 'package:code_capital/core/widgets/animations/nav_bar/nav_rail/wigets/nav_rail_items_list.dart';
+import 'package:code_capital/core/cubits/game_nav_cubit/game_nav_cubit.dart';
+import 'package:code_capital/core/widgets/animations/text/expandable_text.dart';
+import 'package:code_capital/core/widgets/buttons/spring_elevated_button.dart';
+import 'package:code_capital/core/widgets/configs/custom_scroll_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+part 'wigets/header.dart';
+part 'wigets/items_list.dart';
+part 'wigets/item.dart';
 
 class NavRail extends StatefulWidget {
   final double width;
@@ -45,7 +52,7 @@ class _NavRailState extends State<NavRail> {
       child: Column(
         spacing: 24,
         children: [
-          NavRailHeader(
+          _Header(
             onPressed: toggleExpanded,
             isExpanded: isExpanded,
             title: widget.headerTitle,
@@ -53,7 +60,7 @@ class _NavRailState extends State<NavRail> {
             duration: widget.duration,
           ),
 
-          NavRailItemsList(
+          _ItemsList(
             iconSize: iconSize,
             isExpanded: isExpanded,
             duration: widget.duration,

@@ -1,15 +1,13 @@
-import 'package:code_capital/core/widgets/animations/text/expandable_text.dart';
-import 'package:flutter/material.dart';
+part of '../nav_rail.dart';
 
-class NavRailHeader extends StatelessWidget {
+class _Header extends StatelessWidget {
   final VoidCallback? onPressed;
   final bool isExpanded;
   final String title;
   final double? iconSize;
   final int duration;
 
-  const NavRailHeader({
-    super.key,
+  const _Header({
     this.onPressed,
     this.isExpanded = false,
     this.title = '',

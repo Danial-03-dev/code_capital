@@ -101,6 +101,22 @@ ThemeData appThemeProvider({
       labelLarge: TextStyle(color: hint, fontSize: 20),
       labelMedium: TextStyle(color: hint, fontSize: 16),
       labelSmall: TextStyle(color: hint, fontSize: 12),
+
+      displaySmall: TextStyle(
+        color: textPrimary,
+        fontSize: 32,
+        fontWeight: FontWeight.normal,
+      ),
+      displayMedium: TextStyle(
+        color: textPrimary,
+        fontSize: 36,
+        fontWeight: FontWeight.bold,
+      ),
+      displayLarge: TextStyle(
+        color: textPrimary,
+        fontSize: 48,
+        fontWeight: FontWeight.bold,
+      ),
     ),
 
     /// Elevated Buttons
@@ -186,5 +202,14 @@ ThemeData appThemeProvider({
 
     // Dialog Box Theme
     dialogTheme: DialogThemeData(backgroundColor: surface),
+
+    tooltipTheme: TooltipThemeData(
+      waitDuration: const Duration(milliseconds: 500),
+      decoration: BoxDecoration(
+        color: primary,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      textStyle: TextStyle(color: textPrimary, fontSize: 14),
+    ),
   );
 }

@@ -1,18 +1,13 @@
-import 'package:code_capital/core/cubits/game_nav_cubit/game_nav_cubit.dart';
-import 'package:code_capital/core/widgets/animations/text/expandable_text.dart';
-import 'package:code_capital/core/widgets/buttons/spring_elevated_button.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+part of '../nav_rail.dart';
 
-class NavRailItem extends StatelessWidget {
+class _Item extends StatelessWidget {
   final bool isExpanded;
   final IconData icon;
   final double? iconSize;
   final String pageTitle;
   final int duration;
 
-  const NavRailItem({
-    super.key,
+  const _Item({
     this.isExpanded = false,
     this.icon = Icons.picture_in_picture_rounded,
     this.iconSize,
