@@ -8,14 +8,16 @@ part 'widgets/card_header.dart';
 part 'widgets/card_data.dart';
 
 class GameCompanyInfoCard extends StatelessWidget {
-  const GameCompanyInfoCard({super.key});
+  final double? height;
+
+  const GameCompanyInfoCard({super.key, this.height});
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 256,
+    return SizedBox(
+      height: height,
       width: 256,
-      child: Card(
+      child: const Card(
         elevation: 2,
         child: GlowBackgroundContainer(
           borderRadius: 12,
