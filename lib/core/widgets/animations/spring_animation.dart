@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 
 class SpringAnimation extends StatefulWidget {
   final Widget child;
+  final double scaleMin;
+  final double scaleMax;
 
-  const SpringAnimation({super.key, required this.child});
+  const SpringAnimation({
+    super.key,
+    required this.child,
+    this.scaleMin = 0.95,
+    this.scaleMax = 1.08,
+  });
 
   @override
   State<SpringAnimation> createState() => _SpringAnimationState();
@@ -14,8 +21,8 @@ class _SpringAnimationState extends State<SpringAnimation> {
   bool _isPressed = false;
 
   double get _scale {
-    if (_isPressed) return 0.95;
-    if (_isHovered) return 1.08;
+    if (_isPressed) return widget.scaleMin;
+    if (_isHovered) return widget.scaleMax;
     return 1.0;
   }
 

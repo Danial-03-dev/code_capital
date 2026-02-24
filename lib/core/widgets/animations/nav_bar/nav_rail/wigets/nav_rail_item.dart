@@ -35,6 +35,8 @@ class NavRailItem extends StatelessWidget {
     }
 
     return SpringElevatedButton(
+      scaleMin: isExpanded ? 0.98 : 0.95,
+      scaleMax: isExpanded ? 1.05 : 1.08,
       onPressed: handleNavigation,
       color: buttonColor,
       child: Row(

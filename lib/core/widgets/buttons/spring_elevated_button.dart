@@ -7,6 +7,8 @@ class SpringElevatedButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final Color? color;
   final double? elevation;
+  final double scaleMin;
+  final double scaleMax;
 
   const SpringElevatedButton({
     super.key,
@@ -15,11 +17,15 @@ class SpringElevatedButton extends StatelessWidget {
     this.padding,
     this.color,
     this.elevation,
+    this.scaleMin = 0.95,
+    this.scaleMax = 1.08,
   });
 
   @override
   Widget build(BuildContext context) {
     return SpringAnimation(
+      scaleMin: scaleMin,
+      scaleMax: scaleMax,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
