@@ -13,7 +13,7 @@ class GradientBackgroundContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeContext = Theme.of(context);
-    final topColor = themeContext.primaryColor;
+    final topColor = themeContext.colorScheme.surface;
     final midColor = themeContext.colorScheme.onPrimary;
     final botColor = themeContext.colorScheme.surface;
 

@@ -1,6 +1,6 @@
 import 'package:code_capital/core/cubits/app_cubit/app_cubit.dart';
 import 'package:code_capital/core/widgets/backgrounds/glow_background_container.dart';
-import 'package:code_capital/core/widgets/display/stat_row.dart';
+import 'package:code_capital/core/widgets/display/stat_row/stat_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
