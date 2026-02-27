@@ -46,4 +46,9 @@ class EmployeeStorageModel {
 
   factory EmployeeStorageModel.fromJson(String source) =>
       EmployeeStorageModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() {
+    return 'EmployeeStorageModel(name: $name, pay: $pay, hiringCost: $hiringCost, role: $role, skill: $skill, statement: $statement)';
+  }
 }

@@ -24,4 +24,7 @@ class GameSnapshotModel {
 
   factory GameSnapshotModel.fromJson(String source) =>
       GameSnapshotModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() => 'GameSnapshotModel(company: $company)';
 }

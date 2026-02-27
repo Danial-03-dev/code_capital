@@ -13,9 +13,11 @@ class EmployeesRecruitList extends StatelessWidget {
     return Wrap(
       spacing: 8,
       runSpacing: 8,
-      children: recruits
-          .map((recruit) => EmployeeCard(employee: recruit))
-          .toList(),
+      children: recruits.asMap().entries.map((entry) {
+        final recruit = entry.value;
+        final recruitIndex = entry.key;
+        return EmployeeCard(employee: recruit, employeeIndex: recruitIndex);
+      }).toList(),
     );
   }
 }

@@ -48,4 +48,9 @@ class CompanyStorageModel {
 
   factory CompanyStorageModel.fromJson(String source) =>
       CompanyStorageModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() {
+    return 'CompanyStorageModel(employees: $employees, companyName: $companyName, money: $money, rating: $rating, maxEmployees: $maxEmployees)';
+  }
 }

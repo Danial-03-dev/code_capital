@@ -1,4 +1,5 @@
 import 'package:code_capital/core/cubits/app_cubit/app_cubit.dart';
+import 'package:code_capital/core/cubits/company_cubits/company_employees_cubit.dart';
 import 'package:code_capital/core/cubits/game_loop_cubit/game_loop_cubit.dart';
 import 'package:code_capital/core/cubits/game_nav_cubit/game_nav_cubit.dart';
 import 'package:code_capital/core/cubits/theme_cubit/theme_cubit.dart';
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
           create: (_) => serviceLocator<AppCubit>()..load(),
         ),
         BlocProvider<GameNavCubit>(create: (_) => GameNavCubit()),
+        BlocProvider<CompanyEmployeesCubit>(
+          create: (_) => CompanyEmployeesCubit(),
+        ),
       ],
       child: BlocConsumer<ThemeCubit, ThemeCubitState>(
         listener: (context, state) {},
