@@ -8,7 +8,7 @@ class GameSnapshotStorageService {
   const GameSnapshotStorageService({required Box box}) : _box = box;
 
   Future<void> save({required GameSnapshotModel snapshot}) async {
-    await _box.put(_snapshotKey, snapshot.toJson());
+    // await _box.put(_snapshotKey, snapshot.toJson());
   }
 
   Future<GameSnapshotModel?> load() async {

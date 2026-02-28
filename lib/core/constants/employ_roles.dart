@@ -2,7 +2,8 @@ enum EmployeeRoles {
   designer,
   programmer;
 
-  String get text {
+  @override
+  String toString() {
     switch (this) {
       case EmployeeRoles.designer:
         return 'designer';

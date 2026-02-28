@@ -2,7 +2,7 @@ import 'package:code_capital/core/cubits/app_top_nav_cubit/app_top_nav_cubit.dar
 import 'package:code_capital/core/cubits/company_cubits/company_employees_cubit.dart';
 import 'package:code_capital/core/widgets/page/app_page_body.dart';
 import 'package:code_capital/features/employee/cubits/employee_recruits_cubit.dart';
-import 'package:code_capital/features/employee/view/pages/employees_details_page.dart';
+import 'package:code_capital/features/employee/view/pages/manage_employees_page.dart';
 import 'package:code_capital/features/employee/view/pages/hire_employees_page.dart';
 import 'package:code_capital/features/employee/view/widgets/nav_bar/employees_page_top_nav_bar.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class EmployeesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      const EmployeesDetailsPage(),
+      const ManageEmployeesPage(),
       const HireEmployeesPage(),
     ];
 

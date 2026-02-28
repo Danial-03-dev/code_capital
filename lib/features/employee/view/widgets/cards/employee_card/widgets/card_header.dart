@@ -14,7 +14,7 @@ class _CardHeader extends StatelessWidget {
       spacing: 12,
       children: [
         Text(
-          toBeginningOfSentenceCase(employee.role.text),
+          toBeginningOfSentenceCase(employee.role.toString()),
           style: textTheme.titleLarge?.copyWith(color: theme.primaryColor),
         ),
         const _HeaderAvatar(),

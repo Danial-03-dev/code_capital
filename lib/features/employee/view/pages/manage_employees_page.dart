@@ -1,8 +1,9 @@
 import 'package:code_capital/core/widgets/sections/app_page_section.dart';
+import 'package:code_capital/features/employee/view/widgets/tables/manage_employees_table/manage_employees_table.dart';
 import 'package:flutter/material.dart';
 
-class EmployeesDetailsPage extends StatelessWidget {
-  const EmployeesDetailsPage({super.key});
+class ManageEmployeesPage extends StatelessWidget {
+  const ManageEmployeesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +12,8 @@ class EmployeesDetailsPage extends StatelessWidget {
         children: [
           AppPageSection(
             width: double.infinity,
-            title: 'Employees',
-            child: Column(children: [Text('Ahoo Girl')]),
+            title: 'Manage Employees',
+            child: ManageEmployeesTable(),
           ),
         ],
       ),
