@@ -33,10 +33,13 @@ class CompanyStorageModel {
 
   factory CompanyStorageModel.fromMap(Map<String, dynamic> map) {
     return CompanyStorageModel(
-      employees: List<EmployeeStorageModel>.from(
-        (map['employees'] as List<Map<String, dynamic>>)
-            .map<EmployeeStorageModel>((x) => EmployeeStorageModel.fromMap(x)),
-      ),
+      employees: (map['employees'] as List<dynamic>? ?? [])
+          .map(
+            (e) => EmployeeStorageModel.fromMap(
+              Map<String, dynamic>.from(e as Map),
+            ),
+          )
+          .toList(),
       companyName: map['companyName'] as String,
       money: map['money'] as int,
       rating: map['rating'] as int,
