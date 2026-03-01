@@ -6,7 +6,6 @@ class NavConstants {
   static final navList = [
     (title: 'Home', icon: Icons.home, page: GameHomePage()),
     (title: 'Employees', icon: Icons.people_alt_rounded, page: EmployeesPage()),
-    (title: 'Assets', icon: Icons.currency_bitcoin, page: GameHomePage()),
     (title: 'Settings', icon: Icons.settings, page: GameHomePage()),
   ];
 

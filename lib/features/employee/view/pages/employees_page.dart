@@ -1,3 +1,4 @@
+import 'package:code_capital/core/cubits/app_cubit/app_cubit.dart';
 import 'package:code_capital/core/cubits/app_top_nav_cubit/app_top_nav_cubit.dart';
 import 'package:code_capital/core/cubits/company_cubits/company_employees_cubit.dart';
 import 'package:code_capital/core/widgets/page/app_page_body.dart';
@@ -23,6 +24,7 @@ class EmployeesPage extends StatelessWidget {
         BlocProvider<EmployeeRecruitsCubit>(
           create: (context) => EmployeeRecruitsCubit(
             companyEmployeesCubit: context.read<CompanyEmployeesCubit>(),
+            appCubit: context.read<AppCubit>(),
           )..generateNewRecruits(),
         ),
         BlocProvider<AppTopNavCubit>(create: (_) => AppTopNavCubit()),

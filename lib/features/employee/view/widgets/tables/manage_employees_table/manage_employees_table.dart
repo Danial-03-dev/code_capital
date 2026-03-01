@@ -1,4 +1,5 @@
 import 'package:code_capital/core/cubits/company_cubits/company_employees_cubit.dart';
+import 'package:code_capital/core/storage/models/employee_storage_model.dart';
 import 'package:code_capital/core/utils/employees/format_employees_for_table.dart';
 import 'package:code_capital/core/widgets/tables/app_table/app_table.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +18,12 @@ enum _ActionType {
 }
 
 class ManageEmployeesTable extends StatelessWidget {
-  const ManageEmployeesTable({super.key});
+  final List<EmployeeStorageModel> employees;
+
+  const ManageEmployeesTable({super.key, this.employees = const []});
 
   @override
   Widget build(BuildContext context) {
-    final employees = context.watch<CompanyEmployeesCubit>().state;
-
     final EmployeeTableData(
       indexes: indexes,
       names: names,

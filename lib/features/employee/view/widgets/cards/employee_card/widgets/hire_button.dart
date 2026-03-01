@@ -12,6 +12,11 @@ class _HireButton extends StatelessWidget {
     final textTheme = theme.textTheme;
 
     void handleHireEmployee() {
+      if (isEmployeeLimitReached(context)) {
+        showAppSnackbar(context, 'Upgrade your plan to add more employees.');
+        return;
+      }
+
       context.read<EmployeeRecruitsCubit>().hireEmployee(employeeIndex);
     }
 

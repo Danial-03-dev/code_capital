@@ -173,8 +173,12 @@ ThemeData appThemeProvider({
 
     /// Snackbars
     snackBarTheme: SnackBarThemeData(
-      backgroundColor: surface,
-      contentTextStyle: TextStyle(color: textPrimary),
+      backgroundColor: error,
+      contentTextStyle: TextStyle(
+        color: textPrimary,
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
+      ),
       actionTextColor: primary,
     ),
 

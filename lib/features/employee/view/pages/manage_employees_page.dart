@@ -1,5 +1,4 @@
-import 'package:code_capital/core/widgets/sections/app_page_section.dart';
-import 'package:code_capital/features/employee/view/widgets/tables/manage_employees_table/manage_employees_table.dart';
+import 'package:code_capital/features/employee/view/widgets/sections/manage_employees_section.dart';
 import 'package:flutter/material.dart';
 
 class ManageEmployeesPage extends StatelessWidget {
@@ -8,15 +7,9 @@ class ManageEmployeesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Column(
-        children: [
-          AppPageSection(
-            width: double.infinity,
-            title: 'Manage Employees',
-            child: ManageEmployeesTable(),
-          ),
-        ],
-      ),
+      body:
+          // Column widget to make it flex container for expanded down the line
+          Column(children: [ManageEmployeesSection()]),
     );
   }
 }
