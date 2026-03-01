@@ -11,4 +11,13 @@ class CompanyEmployeesCubit extends Cubit<List<EmployeeStorageModel>> {
   void addEmployee(EmployeeStorageModel newEmployee) {
     emit([...state, newEmployee]);
   }
+
+  void removeEmployeeAt(int index) {
+    if (index < 0 || index >= state.length) return;
+
+    final newEmployeeList = [...state];
+    newEmployeeList.removeAt(index);
+
+    emit(newEmployeeList);
+  }
 }

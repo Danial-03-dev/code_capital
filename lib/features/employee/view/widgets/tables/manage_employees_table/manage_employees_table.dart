@@ -1,8 +1,20 @@
 import 'package:code_capital/core/cubits/company_cubits/company_employees_cubit.dart';
+import 'package:code_capital/core/utils/employees/format_employees_for_table.dart';
 import 'package:code_capital/core/widgets/tables/app_table/app_table.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
+
+enum _ActionType {
+  fire;
+
+  @override
+  String toString() {
+    switch (this) {
+      case _ActionType.fire:
+        return 'Fire';
+    }
+  }
+}
 
 class ManageEmployeesTable extends StatelessWidget {
   const ManageEmployeesTable({super.key});
@@ -11,24 +23,28 @@ class ManageEmployeesTable extends StatelessWidget {
   Widget build(BuildContext context) {
     final employees = context.watch<CompanyEmployeesCubit>().state;
 
-    final List<String> indexes = [];
-    final List<String> names = [];
-    final List<String> roles = [];
-    final List<String> skills = [];
-    final List<String> pays = [];
+    final EmployeeTableData(
+      indexes: indexes,
+      names: names,
+      roles: roles,
+      skills: skills,
+      pays: pays,
+    ) = formatEmployeesForTable(
+      employees,
+    );
 
-    for (int i = 0; i < employees.length; i++) {
-      final employee = employees[i];
+    void handleSelect(String value, List<String> row) {
+      final employeeCubit = context.read<CompanyEmployeesCubit>();
 
-      indexes.add((i + 1).toString());
-      names.add(employee.name);
-      roles.add(toBeginningOfSentenceCase(employee.role.toString()));
-      skills.add('${employee.skill.toString()} / 10');
-      pays.add('\$${employee.pay}');
+      if (value == _ActionType.fire.toString()) {
+        final employeeIndex =
+            int.parse(row[0]) - 1; // Subtract 1 to make index start from 0
+        employeeCubit.removeEmployeeAt(employeeIndex);
+      }
     }
 
     return AppTable(
-      emptyTableText: 'No Employees :(',
+      emptyTableText: 'No Employees',
       data: [
         AppTableDataModel(label: '#', values: indexes, width: 48),
         AppTableDataModel(label: 'Name', values: names),
@@ -38,14 +54,11 @@ class ManageEmployeesTable extends StatelessWidget {
       ],
       options: [
         AppTableActionModel(
-          value: 'Fire',
+          value: _ActionType.fire.toString(),
           icon: Icons.person_remove_alt_1_rounded,
         ),
       ],
-      onSelect: (value, row) {
-        print(value);
-        print(row);
-      },
+      onSelect: handleSelect,
     );
   }
 }
