@@ -1,12 +1,17 @@
 part of '../game_task_info_card.dart';
 
 class _CardFooter extends StatelessWidget {
-  const _CardFooter();
+  final Task task;
+
+  const _CardFooter({required this.task});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
+
+    final progress = task.currentPhaseProgress;
+    final daysToExpire = task.daysToExpire;
 
     return Column(
       spacing: 8,
@@ -20,14 +25,17 @@ class _CardFooter extends StatelessWidget {
           ],
         ),
 
-        const LinearProgressIndicator(value: 0.6),
+        LinearProgressIndicator(value: progress),
 
         Row(
           spacing: 8,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Expires:', style: textTheme.bodyMedium),
-            Text('3 days', style: textTheme.bodyMedium),
+            Text(
+              '$daysToExpire ${daysToExpire == 1 ? 'day' : 'days'}',
+              style: textTheme.bodyMedium,
+            ),
           ],
         ),
       ],

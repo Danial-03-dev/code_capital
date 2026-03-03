@@ -1,4 +1,7 @@
 import 'package:code_capital/core/cubits/app_cubit/app_cubit.dart';
+import 'package:code_capital/core/cubits/app_tasks_cubit/app_tasks_cubit.dart';
+import 'package:code_capital/core/cubits/company_cubits/company_employees_cubit.dart';
+import 'package:code_capital/core/utils/format/number_compact_format.dart';
 import 'package:code_capital/core/widgets/backgrounds/glow_background_container.dart';
 import 'package:code_capital/core/widgets/display/stat_row/stat_row.dart';
 import 'package:flutter/material.dart';

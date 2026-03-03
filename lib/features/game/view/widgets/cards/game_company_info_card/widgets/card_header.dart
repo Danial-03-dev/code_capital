@@ -7,6 +7,7 @@ class _CardHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final company = context.watch<AppCubit>().getCompany();
     final companyName = company.companyName;
+    final money = company.money;
 
     final textTheme = Theme.of(context).textTheme;
 
@@ -20,7 +21,7 @@ class _CardHeader extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: textTheme.titleLarge,
         ),
-        Text('\$ 112.2k', style: textTheme.displaySmall),
+        Text('\$ ${numberCompactFormat(money)}', style: textTheme.displaySmall),
       ],
     );
   }

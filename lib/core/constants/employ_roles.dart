@@ -12,6 +12,15 @@ enum EmployeeRoles {
     }
   }
 
+  String getPhase() {
+    switch (this) {
+      case EmployeeRoles.designer:
+        return 'Design';
+      case EmployeeRoles.programmer:
+        return 'Program';
+    }
+  }
+
   // Convert enum to map
   Map<String, dynamic> toMap() {
     return {'role': name};

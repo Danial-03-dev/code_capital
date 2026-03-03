@@ -12,6 +12,7 @@ class CompanyStorageModel {
   int money;
   int rating;
   int maxEmployees;
+  int maxContracts;
 
   CompanyStorageModel({
     required this.companyName,
@@ -19,6 +20,7 @@ class CompanyStorageModel {
     this.employees = const [],
     this.rating = 1,
     this.maxEmployees = 2,
+    this.maxContracts = 2,
   });
 
   Map<String, dynamic> toMap() {
@@ -28,6 +30,7 @@ class CompanyStorageModel {
       'money': money,
       'rating': rating,
       'maxEmployees': maxEmployees,
+      'maxContracts': maxContracts,
     };
   }
 
@@ -44,6 +47,7 @@ class CompanyStorageModel {
       money: map['money'] as int,
       rating: map['rating'] as int,
       maxEmployees: map['maxEmployees'] as int,
+      maxContracts: map['maxContracts'] as int,
     );
   }
 
@@ -54,6 +58,6 @@ class CompanyStorageModel {
 
   @override
   String toString() {
-    return 'CompanyStorageModel(employees: $employees, companyName: $companyName, money: $money, rating: $rating, maxEmployees: $maxEmployees)';
+    return 'CompanyStorageModel(employees: $employees, companyName: $companyName, money: $money, rating: $rating, maxEmployees: $maxEmployees, maxContracts: $maxContracts)';
   }
 }

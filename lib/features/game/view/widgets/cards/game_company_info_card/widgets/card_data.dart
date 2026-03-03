@@ -5,10 +5,14 @@ class _CardData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tasksCubit = context.watch<AppTasksCubit>();
+    final employeesCubit = context.watch<CompanyEmployeesCubit>();
     final company = context.watch<AppCubit>().getCompany();
 
-    final totalEmployees = company.employees.length;
+    final totalEmployees = employeesCubit.state.length;
     final maxEmployeesLimit = company.maxEmployees;
+    final totalContracts = tasksCubit.totalContracts;
+    final maxContracts = company.maxContracts;
     final rating = company.rating;
     final maxRating = 100;
 
@@ -21,6 +25,12 @@ class _CardData extends StatelessWidget {
           max: maxEmployeesLimit.toString(),
           toolTip:
               'Workforce capacity. More employees increase delivery efficiency.',
+        ),
+        StatRow(
+          label: 'Contracts',
+          current: totalContracts.toString(),
+          max: maxContracts.toString(),
+          toolTip: 'Contracts capacity. Upgrade company to get more contracts.',
         ),
         StatRow(
           label: 'Rating',

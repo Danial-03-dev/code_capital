@@ -1,4 +1,4 @@
-import 'package:code_capital/core/constants/mocks/mock_employee_stat_pool.dart';
+import 'package:code_capital/core/constants/mocks/mock_employee_stats_pool.dart';
 
 import 'dart:math';
 
@@ -8,7 +8,7 @@ final _random = Random();
   int maxSkill = 10,
 }) {
   // Only include stat pool smaller or equal to maxSkill
-  final includedStatsPool = mockEmployeeStatPool
+  final includedStatsPool = mockEmployeeStatsPool
       .asMap()
       .entries
       .where((element) => element.key < maxSkill)
