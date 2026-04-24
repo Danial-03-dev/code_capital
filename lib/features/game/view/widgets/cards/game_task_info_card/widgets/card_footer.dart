@@ -10,7 +10,7 @@ class _CardFooter extends StatelessWidget {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
 
-    final progress = task.currentPhaseProgress;
+    final progress = task.currentPhaseProgress / 100;
     final daysToExpire = task.daysToExpire;
 
     return Column(

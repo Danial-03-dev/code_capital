@@ -19,7 +19,9 @@ Future<void> initDependencies() async {
   );
 
   // Cubits
-  serviceLocator.registerLazySingleton<GameLoopCubit>(() => GameLoopCubit());
+  serviceLocator.registerLazySingleton<GameLoopCubit>(
+    () => GameLoopCubit()..start(),
+  );
   serviceLocator.registerFactory<AppCubit>(
     () => AppCubit(storage: serviceLocator<GameSnapshotStorageService>()),
   );

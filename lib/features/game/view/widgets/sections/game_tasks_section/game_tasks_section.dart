@@ -14,7 +14,7 @@ class GameTasksSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final totalTasks = context.read<AppTasksCubit>().state.length;
+    final totalTasks = context.watch<AppTasksCubit>().state.length;
 
     return AppPageSection(
       title: 'Tasks - $totalTasks',

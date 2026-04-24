@@ -38,7 +38,10 @@ class MyApp extends StatelessWidget {
         BlocProvider<CompanyEmployeesCubit>(
           create: (_) => CompanyEmployeesCubit(),
         ),
-        BlocProvider<AppTasksCubit>(create: (_) => AppTasksCubit()),
+        BlocProvider<AppTasksCubit>(
+          create: (_) =>
+              AppTasksCubit(gameLoopCubit: serviceLocator<GameLoopCubit>()),
+        ),
       ],
       child: BlocConsumer<ThemeCubit, ThemeCubitState>(
         listener: (context, state) {},
