@@ -1,5 +1,8 @@
 import 'package:code_capital/core/cubits/app_cubit/app_cubit.dart';
+import 'package:code_capital/core/cubits/company_cubits/company_employees_cubit.dart';
 import 'package:code_capital/core/cubits/game_loop_cubit/game_loop_cubit.dart';
+import 'package:code_capital/core/cubits/game_nav_cubit/game_nav_cubit.dart';
+import 'package:code_capital/core/cubits/theme_cubit/theme_cubit.dart';
 import 'package:code_capital/core/storage/storage_services/game_snapshot_storage_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
@@ -19,10 +22,13 @@ Future<void> initDependencies() async {
   );
 
   // Cubits
-  serviceLocator.registerLazySingleton<GameLoopCubit>(
-    () => GameLoopCubit()..start(),
-  );
-  serviceLocator.registerFactory<AppCubit>(
+  serviceLocator.registerLazySingleton<GameLoopCubit>(() => GameLoopCubit());
+  serviceLocator.registerLazySingleton<AppCubit>(
     () => AppCubit(storage: serviceLocator<GameSnapshotStorageService>()),
+  );
+  serviceLocator.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
+  serviceLocator.registerLazySingleton<GameNavCubit>(() => GameNavCubit());
+  serviceLocator.registerLazySingleton<CompanyEmployeesCubit>(
+    () => CompanyEmployeesCubit(),
   );
 }

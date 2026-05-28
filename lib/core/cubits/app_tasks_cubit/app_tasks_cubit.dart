@@ -3,16 +3,21 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:code_capital/core/classes/game_engine_classes/task_engine.dart';
 import 'package:code_capital/core/classes/sealed_classes/task.dart';
+import 'package:code_capital/core/cubits/company_cubits/company_employees_cubit.dart';
 import 'package:code_capital/core/cubits/game_loop_cubit/game_loop_cubit.dart';
 import 'package:code_capital/core/storage/models/contract_storage_model.dart';
 
 class AppTasksCubit extends Cubit<List<Task>> {
   final GameLoopCubit _gameLoopCubit;
   late final StreamSubscription _subscription;
+  late final CompanyEmployeesCubit _companyEmployeesCubit;
 
-  AppTasksCubit({required GameLoopCubit gameLoopCubit})
-    : _gameLoopCubit = gameLoopCubit,
-      super([]) {
+  AppTasksCubit({
+    required GameLoopCubit gameLoopCubit,
+    required CompanyEmployeesCubit companyEmployeesCubit,
+  }) : _gameLoopCubit = gameLoopCubit,
+       _companyEmployeesCubit = companyEmployeesCubit,
+       super([]) {
     _subscription = _gameLoopCubit.stream.listen(_onTick);
   }
 
@@ -35,6 +40,13 @@ class AppTasksCubit extends Cubit<List<Task>> {
   }
 
   void _onTick(int tick) {
-    emit(TaskEngine.tick(state));
+    final totalEmployeesRolesSkill = _companyEmployeesCubit
+        .getTotalEmployeesRolesSkill();
+    emit(
+      TaskEngine.tick(
+        tasks: state,
+        totalEmployeeRolesSkill: totalEmployeesRolesSkill,
+      ),
+    );
   }
 }

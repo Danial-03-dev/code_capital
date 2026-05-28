@@ -15,7 +15,9 @@ void main() async {
 
   await initDependencies();
 
-  serviceLocator<GameLoopCubit>().start();
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    serviceLocator<GameLoopCubit>().start();
+  });
 
   runApp(const MyApp());
 }
@@ -27,20 +29,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => ThemeCubit()),
-        BlocProvider<GameLoopCubit>.value(
-          value: serviceLocator<GameLoopCubit>(),
-        ),
+        BlocProvider(create: (_) => serviceLocator<ThemeCubit>()),
+        BlocProvider(create: (_) => serviceLocator<GameLoopCubit>()),
         BlocProvider<AppCubit>(
           create: (_) => serviceLocator<AppCubit>()..load(),
         ),
-        BlocProvider<GameNavCubit>(create: (_) => GameNavCubit()),
+        BlocProvider<GameNavCubit>(
+          create: (_) => serviceLocator<GameNavCubit>(),
+        ),
         BlocProvider<CompanyEmployeesCubit>(
-          create: (_) => CompanyEmployeesCubit(),
+          create: (_) => serviceLocator<CompanyEmployeesCubit>(),
         ),
         BlocProvider<AppTasksCubit>(
-          create: (_) =>
-              AppTasksCubit(gameLoopCubit: serviceLocator<GameLoopCubit>()),
+          create: (_) => AppTasksCubit(
+            gameLoopCubit: serviceLocator<GameLoopCubit>(),
+            companyEmployeesCubit: serviceLocator<CompanyEmployeesCubit>(),
+          ),
         ),
       ],
       child: BlocConsumer<ThemeCubit, ThemeCubitState>(
